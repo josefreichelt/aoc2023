@@ -1,4 +1,4 @@
-from part1.solution import solve
+from .solution import solve
 import os
 # Add root folder for common module
 import sys
