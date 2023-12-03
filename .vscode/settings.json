@@ -1,5 +1,5 @@
 {
-    "python.testing.pytestArgs": [".","-s","-v","--capture=no","-rP"],
+    "python.testing.pytestArgs": [".","-s","-v","--capture=no"],
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
     "python.testing.autoTestDiscoverOnSaveEnabled": true,
