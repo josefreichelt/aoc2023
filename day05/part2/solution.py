@@ -31,7 +31,7 @@ class SeedMap:
 
 
 def solve(input: list[str]):
-    print("🎄 Solving Day 5 Part 1")
+    print("🎄 Solving Day 5 Part 2")
     lowest_location = 0
     seeds: list[Seed] = []
     maps: list[SeedMap] = []
@@ -40,8 +40,11 @@ def solve(input: list[str]):
     for line_idx, line in enumerate(input):
         if line.startswith("seeds:"):
             vals = line[line.index(":") + 1:].split()
-            for val in vals:
-                seeds.append(Seed(val))
+            for value_index in range(0,len(vals),2):
+                range_start = int(vals[value_index])
+                range_length = int(vals[value_index+1])
+                for ranged_seed_value in range(range_start,range_start+range_length):
+                    seeds.append(Seed(ranged_seed_value))
             # print("Created seeds")
 
         if line[0].isdigit() and current_map != None:
@@ -61,7 +64,6 @@ def solve(input: list[str]):
         if line_idx + 1 == len(input):
             maps.append(current_map)
             current_map = None
-
     current_map = None
     for _ in (maps):
         # Find output map
@@ -93,26 +95,10 @@ def solve(input: list[str]):
             if not is_seed_mapped and seed_value not in seed.mapped_values[current_map.to_type]:
                 seed.mapped_values[current_map.to_type].append(seed_value)
 
-    # Fancy print
-    table_header = []
-    table_header_max_lengths = 0
-    for seed in seeds:
-        for vals in seed.mapped_values.values():
-            table_header_max_lengths = max(vals[0], table_header_max_lengths)
-    table_header_max_lengths = len(str(table_header_max_lengths))
-    for [key, val] in seeds[0].mapped_values.items():
-        table_header.append(f"{key}{' '*(table_header_max_lengths-len(key))}")
-    print(" | ".join(table_header))
-    for seed in seeds:
-        print_vals = []
-        if lowest_location == 0:
-            lowest_location = seed.mapped_values["location"][0]
-        lowest_location = min(seed.mapped_values["location"][0], lowest_location)
-        for seed_val_type in seed.mapped_values.values():
-            for seed_val in seed_val_type:
-                print_vals.append(f"{str(seed_val)}{' '*round(table_header_max_lengths-len(str(seed_val)))} | ")
-        # vals = sum(list(seed.mapped_values.values()), [])
-        print("".join(print_vals))
+            if current_map.to_type == "location":
+                if lowest_location == 0:
+                    lowest_location = seed.mapped_values["location"][0]
+                lowest_location = min(seed.mapped_values["location"][0], lowest_location)
 
     print(f"Lowest seed location is: {lowest_location}")
     return lowest_location
