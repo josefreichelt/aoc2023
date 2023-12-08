@@ -13,7 +13,7 @@ def test_with_test_input():
     print("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛")
 
 
-# Warning, this takes a loooong time
+# Warning, this takes a loooong time (5h,47m)
 def test_with_full_input():
     print("\n┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓")
     input_file = os.path.join(os.path.dirname(__file__), 'input.txt')
@@ -25,6 +25,6 @@ def test_with_full_input():
 def test_with_full_input_with_result():
     print("\n┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓")
     input_file = os.path.join(os.path.dirname(__file__), 'input.txt')
-    assert solve(readfile.read_file_as_list(input_file)) == 600279879
+    assert solve(readfile.read_file_as_list(input_file)) == 20191102
     print("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛")
     pass
